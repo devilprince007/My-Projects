@@ -1,0 +1,11 @@
+package com.app.todo.service;
+
+import com.app.todo.dto.TodoDto;
+
+public interface TodoService {
+	TodoDto addTodo(TodoDto dto);
+	TodoDto deleteTodo();
+	TodoDto updateTodo();
+	TodoDto findTodoById(Long id);
+	TodoDto allTodo();
+}

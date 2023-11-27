@@ -1,0 +1,5 @@
+package com.app.todo.entity;
+
+public class User {
+
+}

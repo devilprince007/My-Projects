@@ -1,0 +1,25 @@
+package com.app.todo.mapper;
+
+import com.app.todo.dto.TodoDto;
+import com.app.todo.entity.Todo;
+
+public class TodoMapper {
+	public static TodoDto mapToTodoDto(Todo todo){
+		return new TodoDto(
+					todo.getId(),
+					todo.getTitle(),
+					todo.getDescription(),
+					todo.isCompleted()
+				);
+	}
+	
+	public static Todo mapToTodo(TodoDto todoDto){
+		Todo todo = new Todo();
+		todo.setId(todoDto.getId());
+		todo.setTitle(todoDto.getTitle());
+		todo.setDescription(todoDto.getDescription());
+		todo.setCompleted(todoDto.isCompleted());
+		
+		return todo;
+	}
+}

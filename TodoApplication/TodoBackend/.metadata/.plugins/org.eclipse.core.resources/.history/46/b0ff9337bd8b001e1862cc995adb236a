@@ -1,0 +1,54 @@
+package com.app.todo.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.app.todo.dto.TodoDto;
+import com.app.todo.entity.Todo;
+import com.app.todo.mapper.TodoMapper;
+import com.app.todo.repository.TodoRepository;
+import com.app.todo.service.TodoService;
+
+import lombok.AllArgsConstructor;
+
+
+@Service
+@AllArgsConstructor
+public class TodoServiceImpl implements TodoService {
+
+	private TodoRepository repository;
+	
+	@Override
+	public TodoDto addTodo(TodoDto todoDto) {
+		System.out.println(todoDto);
+		Todo todo = TodoMapper.mapToTodo(todoDto);
+		System.out.println(todo);
+		Todo savedTodo = repository.save(todo);
+		TodoDto savedTodoDto = TodoMapper.mapToTodoDto(savedTodo);
+		return savedTodoDto;
+	}
+
+	@Override
+	public TodoDto deleteTodo(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TodoDto updateTodo(Long id, TodoDto todo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TodoDto findTodoById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TodoDto allTodo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

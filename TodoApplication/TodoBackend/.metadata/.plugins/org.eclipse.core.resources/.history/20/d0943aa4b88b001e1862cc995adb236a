@@ -1,0 +1,10 @@
+package com.app.todo.serviceImpl;
+
+import com.app.todo.service.TodoService;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public class TodoServiceImpl implements TodoService {
+
+}
