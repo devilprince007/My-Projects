@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.todo.dto.JwtAuthResponse;
+import com.app.todo.dto.LoginDto;
 import com.app.todo.dto.RegisterDto;
 import com.app.todo.service.AuthService;
 
@@ -25,5 +27,12 @@ public class AuthController {
 		
 		String response = authService.register(registerDto);	
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
+	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDto loginDto){
+		JwtAuthResponse authResponse = authService.login(loginDto);
+		
+		return new ResponseEntity<>(authResponse, HttpStatus.OK);
 	}
 }

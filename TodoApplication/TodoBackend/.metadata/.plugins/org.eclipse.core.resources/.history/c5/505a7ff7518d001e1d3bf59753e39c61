@@ -1,0 +1,8 @@
+package com.app.todo.security;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class JwtTokenProvider {
+
+}

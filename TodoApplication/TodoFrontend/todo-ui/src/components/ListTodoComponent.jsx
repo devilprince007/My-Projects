@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 import { getAllTodos, deleteTodo, completeTodo, inCompleteTodo } from "../utilities/TodoService";
 import { useNavigate } from "react-router-dom";
+import { isAdminUser } from "../utilities/AuthService";
 
 const ListTodoComponent = () => {
 
   const [todos, setTodos] = useState([]);
   const navigator = useNavigate();
+
+  const isAdmin = isAdminUser();
 
   //use effect will be used as soon the component load it will call this lisTodo function defined below
   useEffect(() => {
@@ -62,7 +65,10 @@ const ListTodoComponent = () => {
   return (
     <div className="container">
       <h2 className="text-center">List Of Todos</h2>
-      <button className="btn btn-primary mb-2" onClick={addNewTodo}>Add Todo</button>
+      {
+        isAdmin &&
+        <button className="btn btn-primary mb-2" onClick={addNewTodo}>Add Todo</button>
+      }
       <div>
         <table className="table table-bordered table-striped">
           <thead>
@@ -83,8 +89,14 @@ const ListTodoComponent = () => {
                   <td>{todo.description}</td>
                   <td>{todo.completed ? 'Yes' : 'No'}</td>
                   <td>
-                    <button className="btn btn-info" onClick={() => updateTodo(todo.id)}>Update</button>
-                    <button className="btn btn-danger" onClick={() => removeTodo(todo.id)} style={{ margin: "10px" }}>Delete</button>
+                    {
+                      isAdmin &&
+                      <button className="btn btn-info" onClick={() => updateTodo(todo.id)}>Update</button>
+                    }
+                    {
+                      isAdmin &&
+                      <button className="btn btn-danger" onClick={() => removeTodo(todo.id)} style={{ margin: "10px" }}>Delete</button>
+                    }
                     <button className="btn btn-success" onClick={() => markCompleteTodo(todo.id)} style={{ margin: "10px" }}>Completed</button>
                     <button className="btn btn-warning" onClick={() => markInCompleteTodo(todo.id)} style={{ margin: "10px" }}>In-Complete</button>
                   </td>

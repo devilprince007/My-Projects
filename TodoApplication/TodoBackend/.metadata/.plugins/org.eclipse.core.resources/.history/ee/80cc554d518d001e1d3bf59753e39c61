@@ -1,0 +1,13 @@
+spring.datasource.url=jdbc:mysql://localhost:3306/todo_management
+spring.datasource.username=root
+spring.datasource.password=root
+spring.jpa.properties.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+jwt.secret==262cc47030b1803064844b94c1cb0054a247d1e550e26bb33f215149d8b2c72e
+jwt.jwtExpirationInMs=604800000
+
+#spring.security.user.name=yash
+#spring.security.user.password=password
+#spring.security.user.roles=ADMIN, USER, MANAGER

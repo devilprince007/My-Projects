@@ -1,0 +1,5 @@
+package com.app.todo.dto;
+
+public class LoginDto {
+
+}
