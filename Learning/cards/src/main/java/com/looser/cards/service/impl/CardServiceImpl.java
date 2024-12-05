@@ -10,6 +10,7 @@ import com.looser.cards.dto.CardDto;
 import com.looser.cards.entity.Cards;
 import com.looser.cards.exception.CardAlreadyExistsException;
 import com.looser.cards.exception.ResourceNotFoundException;
+import com.looser.cards.mapper.CardsMapper;
 import com.looser.cards.repository.CardRepository;
 import com.looser.cards.service.ICardService;
 
@@ -30,22 +31,25 @@ public class CardServiceImpl implements ICardService{
 	}
 
 	@Override
-	public boolean fetchCard(String mobileNumber) {
-		Cards card = repository.findByMobileNumber(mobileNumber).orElseThrow(() -> new ResourceNotFoundException(("Card", "mobileNumber", mobileNumber)));
+	public CardDto fetchCard(String mobileNumber) {
+		Cards card = repository.findByMobileNumber(mobileNumber).orElseThrow(() -> new ResourceNotFoundException("Card", "mobileNumber", mobileNumber));
 		
-		return false;
+		return CardsMapper.mapToCardsDto(card, new CardDto());
 	}
 
-	@Override
-	public CardDto updateCard(CardDto cardDto) {
+	public boolean updateCard(CardDto cardDto) {
+		Cards cards = repository.findByCardNumber(cardDto.getCardNumber()).orElseThrow(() -> new ResourceNotFoundException("Card", "mobileNumber", cardDto.getCardNumber()));
 		
-		return null;
+		CardsMapper.mapToCards(cardDto, cards);
+		repository.save(cards);
+		return true;
 	}
 
 	@Override
 	public boolean deleteCard(String mobileNumber) {
-		
-		return false;
+		Cards cards = repository.findByMobileNumber(mobileNumber).orElseThrow(() -> new ResourceNotFoundException("Card", "mobileNumber", mobileNumber));
+		repository.deleteById(cards.getCardId());
+		return true;
 	}
 	
 	private Cards createNewCard(String mobileNumber) {

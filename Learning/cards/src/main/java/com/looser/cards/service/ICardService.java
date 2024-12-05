@@ -4,7 +4,7 @@ import com.looser.cards.dto.CardDto;
 
 public interface ICardService {
 	void createCard(String mobileNumber);
-	boolean fetchCard(String mobileNumber);
-	CardDto updateCard(CardDto cardDto);
+	CardDto fetchCard(String mobileNumber);
+	boolean updateCard(CardDto cardDto);
 	boolean deleteCard(String mobileNumber);
 }
